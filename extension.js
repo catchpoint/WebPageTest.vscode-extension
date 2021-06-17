@@ -50,13 +50,8 @@ async function activate(context) {
 		  </body>
 		</html>`
 		const wptResponse = await wptHelpers.runTest(wpt, url.toString(), options);
-		console.log(wptResponse.result.data.summary)
-		// const panel = vscode.window.createWebviewPanel(
-		// 	'webpagetest',
-		// 	'WebPageTest',
-		// 	vscode.ViewColumn.One
-		// );
 
+		console.log("chromeUserTiming :- ",wptResponse.result.data.median.firstView.chromeUserTiming)
 		panel.webview.html = getWebviewContent(wptResponse);
 	});
 
@@ -81,6 +76,19 @@ function getWebviewContent(wptResponse) {
 			flex: 33.33%;
 			padding: 5px;
 		  }
+		  table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		  }
+		  td, th {
+			border: 1px solid silver;
+			padding: 8px;	
+			text-align: center;
+		  }
+		  .bordernone{
+			  border: none;
+		  }	
 	  </style>
   </head>
   <body>
@@ -93,10 +101,10 @@ function getWebviewContent(wptResponse) {
 			<table>
 		    	<tbody>
 					<tr>
-		  				<th></th>
-						<th>Web Vitals</th>
-						<th>Document Complete</th>
-						<th>Fully Loaded</th>  
+		  				<th colspan="4" class="bordernone"></th>
+						<th colspan="3">Web Vitals</th>
+						<th colspan="3">Document Complete</th>
+						<th colspan="4">Fully Loaded</th>  
 					</tr>
 					<tr>
 		  				<th>First Byte</th>
@@ -112,6 +120,21 @@ function getWebviewContent(wptResponse) {
 						<th>Time</th>
 						<th>Requests</th>
 						<th>Bytes In</th>  
+					</tr>
+					<tr>
+		  				<td>${wptResponse.result.data.median.firstView.TTFB/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.render/1000}s</th>
+						<td>3</th>
+						<td>${wptResponse.result.data.median.firstView.SpeedIndex/1000}s</th>
+						<td>4.56</th>
+						<td>5.76</th>
+						<td>>= ${wptResponse.result.data.median.firstView.TotalBlockingTime/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.docTime/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.requestsDoc}</th>
+						<td>456</th>
+						<td>${wptResponse.result.data.median.firstView.fullyLoaded/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.requestsFull}</th>
+						<td>456</th>  
 					</tr>
 				</tbody>
 			</table>
