@@ -38,7 +38,6 @@
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
 		"webpagetest": "^0.4.0"
 	}
 }
