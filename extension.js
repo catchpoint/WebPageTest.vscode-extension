@@ -50,9 +50,25 @@ async function activate(context) {
 		  </body>
 		</html>`
 		const wptResponse = await wptHelpers.runTest(wpt, url.toString(), options);
-
-		console.log("chromeUserTiming :- ",wptResponse.result.data.median.firstView.chromeUserTiming)
-		panel.webview.html = getWebviewContent(wptResponse);
+		try {
+			console.log("data :-",wptResponse.result)
+			const chromeUserTiming = wptResponse.result.data.median.firstView.chromeUserTiming;
+			for(let i=0;i<chromeUserTiming.length;i++)
+			{
+				if(chromeUserTiming[i].name == 'firstContentfulPaint')
+					wptResponse.result.data.median.firstView.chromeUserTiming.firstContentfulPaint = chromeUserTiming[i].time;
+				if(chromeUserTiming[i].name == 'LargestContentfulPaint')
+					wptResponse.result.data.median.firstView.chromeUserTiming.LargestContentfulPaint = chromeUserTiming[i].time;
+				if(chromeUserTiming[i].name == 'CumulativeLayoutShift')
+					wptResponse.result.data.median.firstView.chromeUserTiming.CumulativeLayoutShift = chromeUserTiming[i].value.toFixed(3);
+			}
+			console.log("chromeUserTiming :- ",wptResponse.result.data.median.firstView.chromeUserTiming)
+			panel.webview.html = getWebviewContent(wptResponse);
+	
+		} catch (error) {
+			
+			console.log("eeror :-",error)
+		}
 	});
 
 	context.subscriptions.push(disposable);
@@ -124,17 +140,17 @@ function getWebviewContent(wptResponse) {
 					<tr>
 		  				<td>${wptResponse.result.data.median.firstView.TTFB/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.render/1000}s</th>
-						<td>3</th>
+						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.firstContentfulPaint/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.SpeedIndex/1000}s</th>
-						<td>4.56</th>
-						<td>5.76</th>
+						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.LargestContentfulPaint/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.CumulativeLayoutShift}</th>
 						<td>>= ${wptResponse.result.data.median.firstView.TotalBlockingTime/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.docTime/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.requestsDoc}</th>
-						<td>456</th>
+						<td>${Math.round(wptResponse.result.data.median.firstView.bytesInDoc/1024)}KB</th>
 						<td>${wptResponse.result.data.median.firstView.fullyLoaded/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.requestsFull}</th>
-						<td>456</th>  
+						<td>${Math.round(wptResponse.result.data.median.firstView.bytesIn/1024)}KB</th>  
 					</tr>
 				</tbody>
 			</table>
