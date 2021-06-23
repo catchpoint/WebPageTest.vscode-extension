@@ -18,20 +18,47 @@ async function activate(context) {
 
 	let disposable = vscode.commands.registerCommand('webpagetest.wpt', async function () {
 
+
 		const wpt_extension_config = vscode.workspace.getConfiguration('wpt_extension')
 		const WPT_API_KEY = wpt_extension_config.api_key;
 		const wpt = new WebPageTest('www.webpagetest.org', WPT_API_KEY);
-		const url = wpt_extension_config['url_to_test']
-		options['connectivity'] = wpt_extension_config['connectivity'];
-		options['firstViewOnly'] = wpt_extension_config['firstViewOnly'];
-		options['connectivity'] = wpt_extension_config['connectivity'];
-		options['location'] = wpt_extension_config['location'];
+		let url = wpt_extension_config['url_to_test'];
+		if(!url)
+			url = await vscode.window.showInputBox()
+
+		console.log("input :-",url)
+
+		options['connectivity'] = wpt_extension_config['connectivity'] || options['connectivity'];
+		options['firstViewOnly'] = wpt_extension_config['firstViewOnly'] === false ? false : options['firstViewOnly'];
+		options['location'] = wpt_extension_config['location'] || options['location'];
 
 		const panel = vscode.window.createWebviewPanel(
 			'webpagetest',
 			'WebPageTest',
 			vscode.ViewColumn.One
 		);
+
+		if (!url) {
+			panel.webview.html = `<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>WebPageTest Results</title>
+			<style>
+			  h1 {text-align: center;}
+			  h3 {text-align: center;}
+			  h4 {text-align: center;}
+			</style>
+		</head>
+		<body>
+			  <h1>WebPageTest Results</h1>
+			  <h3>Please enter a URL to test</h3>
+			  <h4>You can add URL in settings.json file for vscode or enter it in the input field</h4>
+		  </body>
+		</html>`
+			return;
+		}
 		panel.webview.html = `<!DOCTYPE html>
 		<html lang="en">
 		<head>
@@ -51,17 +78,25 @@ async function activate(context) {
 		</html>`
 		const wptResponse = await wptHelpers.runTest(wpt, url.toString(), options);
 		try {
-			console.log("data :-",wptResponse.result)
+			console.log("data :-",wptResponse)
 			const chromeUserTiming = wptResponse.result.data.median.firstView.chromeUserTiming;
-			for(let i=0;i<chromeUserTiming.length;i++)
+			if(chromeUserTiming)
 			{
-				if(chromeUserTiming[i].name == 'firstContentfulPaint')
-					wptResponse.result.data.median.firstView.chromeUserTiming.firstContentfulPaint = chromeUserTiming[i].time;
-				if(chromeUserTiming[i].name == 'LargestContentfulPaint')
-					wptResponse.result.data.median.firstView.chromeUserTiming.LargestContentfulPaint = chromeUserTiming[i].time;
-				if(chromeUserTiming[i].name == 'CumulativeLayoutShift')
-					wptResponse.result.data.median.firstView.chromeUserTiming.CumulativeLayoutShift = chromeUserTiming[i].value.toFixed(3);
+				for(let i=0;i<chromeUserTiming.length;i++)
+				{
+					if(chromeUserTiming[i].name == 'firstContentfulPaint')
+						wptResponse.result.data.median.firstView.firstContentfulPaint = chromeUserTiming[i].time;
+					if(chromeUserTiming[i].name == 'LargestContentfulPaint')
+						wptResponse.result.data.median.firstView.chromeUserTiming.LargestContentfulPaint = chromeUserTiming[i].time;
+					if(chromeUserTiming[i].name == 'CumulativeLayoutShift')
+						wptResponse.result.data.median.firstView.chromeUserTiming.CumulativeLayoutShift = chromeUserTiming[i].value.toFixed(3);
+				}
 			}
+			else
+			{
+
+			}
+			
 			console.log("chromeUserTiming :- ",wptResponse.result.data.median.firstView.chromeUserTiming)
 			panel.webview.html = getWebviewContent(wptResponse);
 	
@@ -140,9 +175,9 @@ function getWebviewContent(wptResponse) {
 					<tr>
 		  				<td>${wptResponse.result.data.median.firstView.TTFB/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.render/1000}s</th>
-						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.firstContentfulPaint/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.firstContentfulPaint/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.SpeedIndex/1000}s</th>
-						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.LargestContentfulPaint/1000}s</th>
+						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.LargestContentfulPaint/1000}s</td>
 						<td>${wptResponse.result.data.median.firstView.chromeUserTiming.CumulativeLayoutShift}</th>
 						<td>>= ${wptResponse.result.data.median.firstView.TotalBlockingTime/1000}s</th>
 						<td>${wptResponse.result.data.median.firstView.docTime/1000}s</th>
