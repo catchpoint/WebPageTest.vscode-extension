@@ -237,7 +237,6 @@ exports.getContentForNonChromeBasedSubmission = (wptResponse) =>{
 
 exports.getContentForError = (wptResponse)=>{
 
-    console.log(wptResponse)
     return `<!DOCTYPE html>
     <html lang="en">
     <head>

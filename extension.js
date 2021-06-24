@@ -6,8 +6,7 @@ const webViews = require('./utils/web-views');
 let options = {
 	"firstViewOnly": true,
 	"runs": 1,
-	"location": 'ec2-us-east-1:Chrome',
-	"connectivity": '4G',
+	"location": 'Dulles:Chrome.Cable',
 	"pollResults": 5,
 	"timeout": 240
 }
@@ -28,7 +27,6 @@ async function activate(context) {
 			if (!url)
 				url = await vscode.window.showInputBox()
 
-			options['connectivity'] = wpt_extension_config['connectivity'] || options['connectivity'];
 			options['firstViewOnly'] = wpt_extension_config['firstViewOnly'] === false ? false : options['firstViewOnly'];
 			options['location'] = wpt_extension_config['location'] || options['location'];
 
