@@ -1,65 +1,55 @@
-# webpagetest README
+<p align="center"><img src="https://docs.webpagetest.org/img/wpt-navy-logo.png" alt="WebPageTest Logo" /></p>
+<p align="center"><a href="https://docs.webpagetest.org/api/integrations/#officially-supported-integrations">Learn about more WebPageTest API Integrations in our docs</a></p>
 
-This is the README for your extension "webpagetest". After writing up a brief description, we recommend including the following sections.
+# Visual Studio Code Extension For WebPageTest
+The Visual Studio Code(Vscode) Extension for WebPageTest lets you run tests against WebPageTest from within Vscode. Once the tests are complete, some of the performance metrics, a copy of the waterfall, screenshot, and a link to the full results will be displayed in Vscode, right where you are developing, helping you to easily troubleshoot and diagnose performance issues directly from Vscode and possibly refactor the code if needed.
 
-## Features
+**Features:**
+- Run WebPageTest from within Vscode, and get the results back in Vscode.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 1. Installing Packages
 
-For example if there is an image subfolder under your extension project workspace:
+Once you have cloned the project run `npm install` to install dependencies.
+```bash
+npm install
+```
 
-\!\[feature X\]\(images/feature-x.png\)
+### 2. Updating Vscode Settings
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+To update the settings for Vscode, we need to open settings.json file on Vscode. Open your command palette on Vscode(command/ctrl + shift + P) and start typing setting, click on 'Preferences: Open Settings (JSON)' from the command palette. 
 
-## Requirements
+![image](https://user-images.githubusercontent.com/31168643/123271784-cd000d80-d51e-11eb-889c-c8be782b60fd.png)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Update the settings.json as shown below - 
 
-## Extension Settings
+![image](https://user-images.githubusercontent.com/31168643/123272785-b4dcbe00-d51f-11eb-958f-653dbdb789d2.png)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+  * api_key (required) - WebPageTest API Key. [Get yours here](https://app.webpagetest.org/ui/entry/wpt/signup?enableSub=true&utm_source=docs&utm_medium=github&utm_campaign=slackbot&utm_content=account)
 
-For example:
+  *  url_to_test (required) - String value, URL to be tested.
+  
+  *  location (optional) - The location to test from. The location is comprised of the location of the testing agent, the browser to test on, and the connectivity in the following format: <b>location:browser.connectivity</b>
+  
+      <b>Default:</b> Dulles:Chrome.Cable
 
-This extension contributes the following settings:
+### 3. Fire Up The Extension
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Once above steps are complete, press F5 to trigger the debugger. This opens up one more Vscode window where we can run our tests.
 
-## Known Issues
+### 4. Running The Test
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+In the new window of Vscode, open the command palette(command/ctrl + shift + P) and start typing WebPageTest, you should see a WebPageTest command in it. Run the command.
 
-## Release Notes
+![image](https://user-images.githubusercontent.com/31168643/123274196-eefa8f80-d520-11eb-85a4-11fe5479b990.png)
 
-Users appreciate release notes as you update your extension.
+If you had not entered the URL before you get an option to enter it, the test requires an URL to run. Below option is only asked if you had not entered an URL in settings.json
 
-### 1.0.0
+![image](https://user-images.githubusercontent.com/31168643/123274476-2d904a00-d521-11eb-982d-c22749bb5b9b.png)
 
-Initial release of ...
+Once the test is submitted, you get the below response on Vscode.
 
-### 1.0.1
+![image](https://user-images.githubusercontent.com/31168643/123274877-806a0180-d521-11eb-9f14-020e83af7284.png)
 
-Fixed issue #.
+And, when the test has successfully run, you get the metrics, waterfall and screenshot from the test.
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+![image](https://user-images.githubusercontent.com/31168643/123275440-f3737800-d521-11eb-9798-7e9474fe6d0f.png)
