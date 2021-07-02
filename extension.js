@@ -20,15 +20,18 @@ async function activate(context) {
 
 		try {
 
-			const wpt_extension_config = vscode.workspace.getConfiguration('wpt_extension')
+			const wpt_extension_config = JSON.parse(JSON.stringify(vscode.workspace.getConfiguration('wpt_extension')))
 			const WPT_API_KEY = wpt_extension_config.api_key;
 			const wpt = new WebPageTest('www.webpagetest.org', WPT_API_KEY);
 			let url = wpt_extension_config['url_to_test'];
 			if (!url)
 				url = await vscode.window.showInputBox()
-
-			options['firstViewOnly'] = wpt_extension_config['firstViewOnly'] === false ? false : options['firstViewOnly'];
-			options['location'] = wpt_extension_config['location'] || options['location'];
+			
+			wpt_extension_config['firstViewOnly'] = wpt_extension_config['firstViewOnly'] === false ? false : options['firstViewOnly'];
+			wpt_extension_config['location'] = wpt_extension_config['location'] || options['location'];
+			wpt_extension_config['pollResults'] = wpt_extension_config['pollResults'] || options['pollResults'];
+			wpt_extension_config['timeout'] = wpt_extension_config['timeout'] || options['timeout'];
+			wpt_extension_config['runs'] = wpt_extension_config['runs'] || options['runs'];
 
 			var panel = vscode.window.createWebviewPanel(
 				'webpagetest',
@@ -41,7 +44,7 @@ async function activate(context) {
 				return;
 			}
 			panel.webview.html = webViews.getContentForTestSubmission(url);
-			const wptResponse = await wptHelpers.runTest(wpt, url.toString(), options);
+			const wptResponse = await wptHelpers.runTest(wpt, url.toString(), wpt_extension_config);
 			const chromeUserTiming = wptResponse.result.data.median.firstView.chromeUserTiming;
 			if (chromeUserTiming) {
 				for (let i = 0; i < chromeUserTiming.length; i++) {
