@@ -5,16 +5,9 @@
 The Visual Studio Code(Vscode) Extension for WebPageTest lets you run tests against WebPageTest from within Vscode. Once the tests are complete, some of the performance metrics, a copy of the waterfall, screenshot, and a link to the full results will be displayed in Vscode, right where you are developing, helping you to easily troubleshoot and diagnose performance issues directly from Vscode and possibly refactor the code if needed.
 
 **Features:**
-- Run WebPageTest from within Vscode, and get the results back in Vscode.
+- Run WebPageTest from within Vscode, and get the results back in Vscode
 
-### 1. Installing Packages
-
-Once you have cloned the project run `npm install` to install dependencies.
-```bash
-npm install
-```
-
-### 2. Updating Vscode Settings
+### Updating Vscode Settings
 
 To update the settings for Vscode, we need to open settings.json file on Vscode. Open your command palette on Vscode(command/ctrl + shift + P) and start typing setting, click on 'Preferences: Open Settings (JSON)' from the command palette. 
 
@@ -32,11 +25,7 @@ Update the settings.json as shown below -
   
       <b>Default:</b> Dulles:Chrome.Cable
 
-### 3. Fire Up The Extension
-
-Once above steps are complete, press F5 to trigger the debugger. This opens up one more Vscode window where we can run our tests.
-
-### 4. Running The Test
+### Running The Test
 
 In the new window of Vscode, open the command palette(command/ctrl + shift + P) and start typing WebPageTest, you should see a WebPageTest command in it. Run the command.
 
