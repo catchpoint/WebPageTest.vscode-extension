@@ -1,4 +1,3 @@
-// @ts-nocheck
 const vscode = require('vscode');
 const WebPageTest = require("webpagetest");
 const wptHelpers = require('./wpt-helpers');

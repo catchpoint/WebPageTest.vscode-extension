@@ -1,11 +1,14 @@
 {
 	"name": "wpt-vscode-extension",
+	"publisher": "WebPageTest",
 	"displayName": "WebPageTest",
-	"description": "",
-	"version": "0.0.1",
+	"description": "Run WebPageTest within VS Code",
+	"version": "1.0.0",
+	"license": "ISC",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
+	"icon" : "webpagetest.png",
 	"categories": [
 		"Other"
 	],
@@ -21,6 +24,10 @@
 			}
 		]
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/abdulsuhail/wpt-vscode-extension.git"
+	  },
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
