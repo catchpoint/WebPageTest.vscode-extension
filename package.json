@@ -17,6 +17,21 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "WPT Extension",
+			"properties": {
+			  "wpt_extension.api_key": {
+				"type": "string",
+				"default": false,
+				"description": "WebPageTest API Key."
+			  },
+			  "wpt_extension.url_to_test": {
+				"type": ["string", "null"],
+				"default": null,
+				"description": "Specifies the URL to test."
+			  }
+			}
+		  },
 		"commands": [
 			{
 				"command": "webpagetest.wpt",
