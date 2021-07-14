@@ -20,9 +20,9 @@ async function activate(context) {
 		try {
 
 			const wpt_extension_config = JSON.parse(JSON.stringify(vscode.workspace.getConfiguration('wpt_extension')))
-			const WPT_API_KEY = wpt_extension_config.api_key;
+			const WPT_API_KEY = wpt_extension_config.apiKey;
 			const wpt = new WebPageTest('www.webpagetest.org', WPT_API_KEY);
-			let url = wpt_extension_config['url_to_test'];
+			let url = wpt_extension_config['urlToTest'];
 			if (!url)
 				url = await vscode.window.showInputBox()
 			

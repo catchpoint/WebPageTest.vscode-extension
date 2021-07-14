@@ -20,12 +20,12 @@
 		"configuration": {
 			"title": "WPT Extension",
 			"properties": {
-			  "wpt_extension.api_key": {
+			  "wpt_extension.apiKey": {
 				"type": "string",
 				"default": false,
 				"description": "WebPageTest API Key."
 			  },
-			  "wpt_extension.url_to_test": {
+			  "wpt_extension.urlToTest": {
 				"type": ["string", "null"],
 				"default": null,
 				"description": "Specifies the URL to test."
