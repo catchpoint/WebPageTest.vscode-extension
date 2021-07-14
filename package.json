@@ -3,7 +3,7 @@
 	"publisher": "WebPageTest",
 	"displayName": "WebPageTest",
 	"description": "Run WebPageTest within VS Code",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "ISC",
 	"engines": {
 		"vscode": "^1.56.0"
@@ -27,8 +27,28 @@
 			  },
 			  "wpt_extension.urlToTest": {
 				"type": ["string", "null"],
-				"default": null,
+				"default": "",
 				"description": "Specifies the URL to test."
+			  },
+			  "wpt_extension.location": {
+				  "type": "string",
+				  "default": "Dulles:Chrome.Cable",
+				  "description": "WebPageTest test location"
+			  },
+			  "wpt_extension.runs": {
+				  "type": "number",
+				  "default": 1,
+				  "descripttion": "The number of tests to run"
+			  },
+			  "wpt_extension.pollResults": {
+				  "type": "number",
+				  "default": 5,
+				  "descripttion": "The interval (in seconds) to poll the API for test results"
+			  },
+			  "wpt_extension.timeout": {
+				  "type": "number",
+				  "default": 240,
+				  "descripttion": "The maximum time (in seconds) to wait for test results"
 			  }
 			}
 		  },

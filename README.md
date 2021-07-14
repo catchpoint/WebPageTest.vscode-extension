@@ -26,6 +26,15 @@ The following properties are configurable in your settings.json file:
 
 // The location to test from. The location is comprised of the location of the testing agent, the browser to test on, and the connectivity in the following format: location:browser.connectivity.
 "wpt_extension.location": "Dulles:Chrome.Cable",
+
+// The number of tests to run
+"wpt_extension.runs": 1,
+
+// The interval (in seconds) to poll the API for test results
+"wpt_extension.pollResults": 5,
+
+// The maximum time (in seconds) to wait for test results
+"wpt_extension.timeout": 240,
 ```
 ### Running The Test
 
