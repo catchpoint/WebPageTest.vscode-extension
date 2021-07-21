@@ -36,6 +36,8 @@ The following properties are configurable in your settings.json file:
 // The maximum time (in seconds) to wait for test results
 "wpt_extension.timeout": 240,
 ```
+
+Find all the supported locations here.(https://webpagetest.org/getLocations.php?k=API_KEY&f=html)
 ### Running The Test
 
 In the new window of Vscode, open the command palette(command/ctrl + shift + P) and start typing WebPageTest, you should see a WebPageTest command in it. Run the command.
