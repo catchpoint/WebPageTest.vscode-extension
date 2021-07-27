@@ -3,12 +3,12 @@
 	"publisher": "WebPageTest",
 	"displayName": "WebPageTest",
 	"description": "Run WebPageTest within VS Code",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"license": "ISC",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
-	"icon" : "webpagetest.png",
+	"icon": "webpagetest.png",
 	"categories": [
 		"Other"
 	],
@@ -20,38 +20,41 @@
 		"configuration": {
 			"title": "WPT Extension",
 			"properties": {
-			  "wpt_extension.apiKey": {
-				"type": "string",
-				"default": false,
-				"description": "WebPageTest API Key."
-			  },
-			  "wpt_extension.urlToTest": {
-				"type": ["string", "null"],
-				"default": "",
-				"description": "Specifies the URL to test."
-			  },
-			  "wpt_extension.location": {
-				  "type": "string",
-				  "default": "Dulles:Chrome.Cable",
-				  "description": "WebPageTest test location"
-			  },
-			  "wpt_extension.runs": {
-				  "type": "number",
-				  "default": 1,
-				  "descripttion": "The number of tests to run"
-			  },
-			  "wpt_extension.pollResults": {
-				  "type": "number",
-				  "default": 5,
-				  "descripttion": "The interval (in seconds) to poll the API for test results"
-			  },
-			  "wpt_extension.timeout": {
-				  "type": "number",
-				  "default": 240,
-				  "descripttion": "The maximum time (in seconds) to wait for test results"
-			  }
+				"wpt_extension.apiKey": {
+					"type": "string",
+					"default": false,
+					"description": "WebPageTest API Key."
+				},
+				"wpt_extension.urlToTest": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": "",
+					"description": "Specifies the URL to test."
+				},
+				"wpt_extension.location": {
+					"type": "string",
+					"default": "Dulles:Chrome.Cable",
+					"description": "WebPageTest test location"
+				},
+				"wpt_extension.runs": {
+					"type": "number",
+					"default": 1,
+					"descripttion": "The number of tests to run"
+				},
+				"wpt_extension.pollResults": {
+					"type": "number",
+					"default": 5,
+					"descripttion": "The interval (in seconds) to poll the API for test results"
+				},
+				"wpt_extension.timeout": {
+					"type": "number",
+					"default": 240,
+					"descripttion": "The maximum time (in seconds) to wait for test results"
+				}
 			}
-		  },
+		},
 		"commands": [
 			{
 				"command": "webpagetest.wpt",
@@ -62,17 +65,17 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/WebPageTest/wpt-vscode-extension.git"
-	  },
+	},
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.56.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.2.2",
 		"@types/node": "14.x",
+		"@types/vscode": "^1.56.0",
 		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
