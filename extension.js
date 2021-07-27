@@ -25,7 +25,6 @@ async function activate(context) {
 			let url = wpt_extension_config['urlToTest'];
 			if (!url)
 				url = await vscode.window.showInputBox({"prompt": "Enter the URL you want to test."})
-			5
 			wpt_extension_config['firstViewOnly'] = wpt_extension_config['firstViewOnly'] === false ? false : options['firstViewOnly'];
 			wpt_extension_config['location'] = wpt_extension_config['location'] || options['location'];
 			wpt_extension_config['pollResults'] = wpt_extension_config['pollResults'] || options['pollResults'];
