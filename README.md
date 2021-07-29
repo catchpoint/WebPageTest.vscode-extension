@@ -13,28 +13,28 @@ To update the settings for Vscode, we need to open settings.json file on Vscode.
 
 ![image](https://user-images.githubusercontent.com/31168643/123271784-cd000d80-d51e-11eb-889c-c8be782b60fd.png)
 
-You'll need an API key to run the extension. [Get yours here](https://app.webpagetest.org/ui/entry/wpt/signup?enableSub=true&utm_source=docs&utm_medium=github&utm_campaign=vscode&utm_content=account)
+You'll need an API key to run the extension. [Get yours here](https://app.webpagetest.org/ui/entry/wpt/signup?enableSub=true&utm_source=docs&utm_medium=vscode&utm_campaign=vscode&utm_content=account)
 
 The following properties are configurable in your settings.json file:
 
 ```json
 // Your WebPageTest API key. REQUIRED
-"wpt_extension.apiKey": "YOUR_API_KEY",
+"WebPageTest.apiKey": "YOUR_API_KEY",
 
 // The URL to test. If left out of settings.json, the extension will prompt you for a URL when run.
-"wpt_extension.urlToTest": null,
+"WebPageTest.urlToTest": null,
 
 // The location to test from. The location is comprised of the location of the testing agent, the browser to test on, and the connectivity in the following format: location:browser.connectivity.
-"wpt_extension.location": "Dulles:Chrome.Cable",
+"WebPageTest.location": "Dulles:Chrome.Cable",
 
 // The number of tests to run
-"wpt_extension.runs": 1,
+"WebPageTest.runs": 1,
 
 // The interval (in seconds) to poll the API for test results
-"wpt_extension.pollResults": 5,
+"WebPageTest.pollResults": 5,
 
 // The maximum time (in seconds) to wait for test results
-"wpt_extension.timeout": 240,
+"WebPageTest.timeout": 240,
 ```
 [Find all the supported locations here.](https://webpagetest.org/getLocations.php?k=API_KEY&f=html)
 ### Running The Test

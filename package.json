@@ -18,14 +18,14 @@
 	"main": "./extension.js",
 	"contributes": {
 		"configuration": {
-			"title": "WPT Extension",
+			"title": "WebPageTest",
 			"properties": {
-				"wpt_extension.apiKey": {
+				"WebPageTest.apiKey": {
 					"type": "string",
 					"default": false,
-					"description": "WebPageTest API Key."
+					"markdownDescription": "WebPageTest API Key. [Get Yours Here](https://app.webpagetest.org/ui/entry/wpt/signup?enableSub=true&utm_source=docs&utm_medium=vscode&utm_campaign=vscode&utm_content=account)"
 				},
-				"wpt_extension.urlToTest": {
+				"WebPageTest.urlToTest": {
 					"type": [
 						"string",
 						"null"
@@ -33,25 +33,25 @@
 					"default": "",
 					"description": "Specifies the URL to test."
 				},
-				"wpt_extension.location": {
+				"WebPageTest.location": {
 					"type": "string",
 					"default": "Dulles:Chrome.Cable",
 					"description": "WebPageTest test location"
 				},
-				"wpt_extension.runs": {
+				"WebPageTest.runs": {
 					"type": "number",
 					"default": 1,
-					"descripttion": "The number of tests to run"
+					"description": "The number of tests to run"
 				},
-				"wpt_extension.pollResults": {
+				"WebPageTest.pollResults": {
 					"type": "number",
 					"default": 5,
-					"descripttion": "The interval (in seconds) to poll the API for test results"
+					"description": "The interval (in seconds) to poll the API for test results"
 				},
-				"wpt_extension.timeout": {
+				"WebPageTest.timeout": {
 					"type": "number",
 					"default": 240,
-					"descripttion": "The maximum time (in seconds) to wait for test results"
+					"description": "The maximum time (in seconds) to wait for test results"
 				}
 			}
 		},
