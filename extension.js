@@ -19,7 +19,7 @@ async function activate(context) {
 
 		try {
 
-			const wpt_extension_config = JSON.parse(JSON.stringify(vscode.workspace.getConfiguration('wpt_extension')))
+			const wpt_extension_config = JSON.parse(JSON.stringify(vscode.workspace.getConfiguration('WebPageTest')))
 			const WPT_API_KEY = wpt_extension_config.apiKey;
 			const wpt = new WebPageTest('www.webpagetest.org', WPT_API_KEY);
 			let url = wpt_extension_config['urlToTest'];
