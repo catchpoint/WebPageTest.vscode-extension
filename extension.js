@@ -7,7 +7,9 @@ let options = {
 	"runs": 1,
 	"location": 'Dulles:Chrome.Cable',
 	"pollResults": 5,
-	"timeout": 240
+	"timeout": 240,
+	"emulateMobile": false,
+	"device": "MotoG4"
 }
 
 /**
@@ -30,6 +32,8 @@ async function activate(context) {
 			wpt_extension_config['pollResults'] = wpt_extension_config['pollResults'] || options['pollResults'];
 			wpt_extension_config['timeout'] = wpt_extension_config['timeout'] || options['timeout'];
 			wpt_extension_config['runs'] = wpt_extension_config['runs'] || options['runs'];
+			wpt_extension_config['emulateMobile'] = wpt_extension_config['emulateMobile'] === false ? false : options['emulateMobile'];
+			wpt_extension_config['device'] = wpt_extension_config['device'] || options['device'];
 
 			var panel = vscode.window.createWebviewPanel(
 				'webpagetest',
