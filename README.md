@@ -27,9 +27,6 @@ The following properties are configurable in your settings.json file:
 // The location to test from. The location is comprised of the location of the testing agent, the browser to test on, and the connectivity in the following format: location:browser.connectivity.
 "WebPageTest.location": "Dulles:Chrome.Cable",
 
-// skip the Repeat View test
-"WebPageTest.firstViewOnly": true,
-
 // The number of tests to run
 "WebPageTest.runs": 1,
 
