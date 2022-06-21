@@ -53,6 +53,10 @@ If you had not entered the URL before you get an option to enter it, the test re
 
 ![image](https://user-images.githubusercontent.com/31168643/123274476-2d904a00-d521-11eb-982d-c22749bb5b9b.png)
 
+A dropdown will appear for you to choose from multiple locations if you did not mention it in settings.json
+
+![image](/assets/images/locations.png)
+
 Once the test is submitted, you get the below response on Vscode.
 
 ![image](https://user-images.githubusercontent.com/31168643/123274877-806a0180-d521-11eb-9f14-020e83af7284.png)
