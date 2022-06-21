@@ -2,10 +2,10 @@ const vscode = require("vscode");
 const WebPageTest = require("webpagetest");
 const wptHelpers = require("./wpt-helpers");
 const webViews = require("./utils/web-views");
+
 let options = {
   firstViewOnly: true,
   runs: 1,
-  location: "Dulles:Chrome.Cable",
   pollResults: 5,
   timeout: 240,
   emulateMobile: false,
@@ -22,9 +22,40 @@ async function activate(context) {
       const WPT_API_KEY = wpt_extension_config.apiKey;
       const wpt = new WebPageTest("www.webpagetest.org", WPT_API_KEY);
       let url = wpt_extension_config["urlToTest"];
+      let location = wpt_extension_config["location"];
       if (!url) url = await vscode.window.showInputBox({ prompt: "Enter the URL you want to test." });
+
+      ////////// Getting Locations //////////
+      const locationsResult = await wptHelpers.getLocations(new WebPageTest("www.webpagetest.org", "wptapikey"), options);
+      const allLocations = locationsResult.result.response.data.location;
+
+      const arrayLocT = [];
+      const arrayLocV = [];
+
+      allLocations.forEach((loc) => {
+        const titals = loc.Browsers.split(",").map((item) => "Location: " + loc.Label + ", Browser: " + item);
+        const values = loc.Browsers.split(",").map((item) => loc.location + ":" + item);
+
+        for (let i = 0; i < titals.length; i++) {
+          let tit = titals[i];
+          let val = values[i];
+
+          arrayLocT.push(tit);
+          arrayLocV.push(val);
+        }
+      });
+
+      ////////////////////////////////
+
+      if (!location) {
+        location = await vscode.window.showQuickPick(arrayLocT).then((selection) => {
+          const index = arrayLocT.indexOf(selection);
+          return arrayLocV[index];
+        });
+      }
+
       wpt_extension_config["firstViewOnly"] = wpt_extension_config["firstViewOnly"] === false ? false : options["firstViewOnly"];
-      wpt_extension_config["location"] = wpt_extension_config["location"] || options["location"];
+      wpt_extension_config["location"] = wpt_extension_config["location"] || location.toString();
       wpt_extension_config["pollResults"] = wpt_extension_config["pollResults"] || options["pollResults"];
       wpt_extension_config["timeout"] = wpt_extension_config["timeout"] || options["timeout"];
       wpt_extension_config["runs"] = wpt_extension_config["runs"] || options["runs"];

@@ -34,8 +34,11 @@
           "description": "Specifies the URL to test."
         },
         "WebPageTest.location": {
-          "type": "string",
-          "default": "Dulles:Chrome.Cable",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "",
           "description": "WebPageTest test location"
         },
         "WebPageTest.runs": {
