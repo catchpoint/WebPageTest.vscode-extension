@@ -35,6 +35,12 @@ The following properties are configurable in your settings.json file:
 
 // The maximum time (in seconds) to wait for test results
 "WebPageTest.timeout": 240,
+
+// emulate mobile browser: Chrome mobile user agent, 640x960 screen, 2x scaling and fixed viewport (Chrome only)
+"WebPageTest.emulateMobile": true,
+
+// device name from mobile_devices.ini (Link: https://github.com/WPO-Foundation/webpagetest/blob/master/www/settings/mobile_devices.ini) to use for mobile emulation (only when emulateMobile=true is specified to enable emulation and only for Chrome)
+"WebPageTest.device": "MotoG4",
 ```
 [Find all the supported locations here.](https://webpagetest.org/getLocations.php?k=API_KEY&f=html)
 ### Running The Test
