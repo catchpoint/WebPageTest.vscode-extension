@@ -51,11 +51,6 @@
           "default": 5,
           "description": "The interval (in seconds) to poll the API for test results"
         },
-        "WebPageTest.timeout": {
-          "type": "number",
-          "default": 240,
-          "description": "The maximum time (in seconds) to wait for test results"
-        },
         "WebPageTest.emulateMobile": {
           "type": "boolean",
           "default": false,
@@ -63,7 +58,6 @@
         },
         "WebPageTest.device": {
           "type": "string",
-          "default": "MotoG4",
           "description": "device name from mobile_devices.ini (Link: https://github.com/WPO-Foundation/webpagetest/blob/master/www/settings/mobile_devices.ini) to use for mobile emulation (only when emulateMobile=true is specified to enable emulation and only for Chrome)"
         }
       }
@@ -96,6 +90,6 @@
     "vscode-test": "^1.5.2"
   },
   "dependencies": {
-    "webpagetest": "^0.4.0"
+    "webpagetest": "^0.6.0"
   }
 }
