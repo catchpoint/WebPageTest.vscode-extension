@@ -36,7 +36,7 @@ async function activate(context) {
           {
             location: vscode.ProgressLocation.Notification,
             cancellable: false,
-            title: "Fetching Location...",
+            title: "Fetching Locations...",
           },
           async () => {
             const locationsResult = await wptHelpers.getLocations(wpt, { allLocations: false });
