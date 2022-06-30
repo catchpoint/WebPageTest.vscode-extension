@@ -33,9 +33,6 @@ The following properties are configurable in your settings.json file:
 // The interval (in seconds) to poll the API for test results
 "WebPageTest.pollResults": 5,
 
-// The maximum time (in seconds) to wait for test results
-"WebPageTest.timeout": 240,
-
 // emulate mobile browser: Chrome mobile user agent, 640x960 screen, 2x scaling and fixed viewport (Chrome only)
 "WebPageTest.emulateMobile": true,
 
@@ -53,9 +50,17 @@ If you had not entered the URL before you get an option to enter it, the test re
 
 ![image](https://user-images.githubusercontent.com/31168643/123274476-2d904a00-d521-11eb-982d-c22749bb5b9b.png)
 
-A dropdown will appear for you to choose from multiple locations if you did not mention it in settings.json
+A dropdown will appear for you to choose from multiple locations if you had not mentioned it in settings.json
 
 ![image](/assets/images/locations.png)
+
+You will be asked to choose if you want to run the test on a mobile device.
+
+![image](/assets/images/emulatemobile.png)
+
+A list of mobile devices provided by WebPageTest appears if selected yes.
+
+![image](/assets/images/device.png)
 
 Once the test is submitted, you get the below response on Vscode.
 
